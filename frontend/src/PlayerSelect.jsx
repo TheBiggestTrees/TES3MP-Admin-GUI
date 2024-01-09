@@ -7,24 +7,25 @@ export default function PlayerSelect({host}) {
 
   const [nameText, setNameText] = useState('');
   const [playerName, setPlayerName] = useState(null);
-  const [players, setPlayers] = useState([]);
   const [selectedPlayer, setSelectedPlayer] = useState();
+  const [players, setPlayers] = useState([]);
 
   useEffect(() => {
     axios.get(`${host}/players`)
     .then(res => {
-
       const playerOnServer = [];
-
-      res.data.map(i => {
-        const iAlone = i.split('.');
-        playerOnServer.push(iAlone[0]);
+      res.data.forEach(i => {
+        if(i !== '.gitkeep') {
+          const iAlone = i.split('.');
+          playerOnServer.push(iAlone[0]);
+        }
       })
       
       setPlayers(playerOnServer);
-    })
+    })        
 
-  }, []);
+  })
+
 
   const handleChange = (e) => {
 

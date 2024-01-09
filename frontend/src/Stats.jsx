@@ -12,24 +12,27 @@ const Stats = ({host}) => {
     const [level, setLevel] = useState();
     const [levelProgress, setLevelProgress] = useState();
 
+    useEffect(() => {
+        axios.get(`${host}/`)
+        .then(res => {
+            const data = res.data.stats;
+            setStats(data);                   
+        })
+            
+    })
 
     function setStats(data) {
-        setHealthBase(data.healthBase);
-        setHealthCurrent(data.healthCurrent);
-        setMagickaBase(data.magickaBase);
-        setMagickaCurrent(data.magickaCurrent);
-        setFatigueBase(data.fatigueBase);
-        setFatigueCurrent(data.fatigueCurrent);
-        setLevel(data.level);
-        setLevelProgress(data.levelProgress);
+        setHealthBase(Math.floor(data.healthBase));
+        setHealthCurrent(Math.floor(data.healthCurrent));
+        setMagickaBase(Math.floor(data.magickaBase));
+        setMagickaCurrent(Math.floor(data.magickaCurrent));
+        setFatigueBase(Math.floor(data.fatigueBase));
+        setFatigueCurrent(Math.floor(data.fatigueCurrent));
+        setLevel(Math.floor(data.level));
+        setLevelProgress(Math.floor(data.levelProgress));
     }
 
-    axios.get(`${host}/`)
-    .then(res => {
-        const data = res.data.stats;
-        setStats(data);                   
-    })
-        
+   
    
     return (
         <>

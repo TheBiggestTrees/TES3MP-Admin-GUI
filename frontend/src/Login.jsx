@@ -1,14 +1,18 @@
 
+import axios from 'axios';
 import React, { useState } from 'react'
 
 const Login = ({setIpAddress}) => {
 
     const [serverIP, setServerIP] = useState('');
+    
 
     const handleSubmit = (e) => {
         setIpAddress(serverIP);
-        e.preventDefault()
-    }
+        setServerIP('');
+        
+        e.preventDefault();
+    };
 
     return (
         <>
