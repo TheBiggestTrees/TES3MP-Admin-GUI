@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-const port = process.env.port || 3000;
+const port = 3000;
 
 let selectedPlayer = 'Tree';
 const players = [...fs.readdirSync('../../server/data/player/')]
@@ -52,7 +52,6 @@ app.put('/nameChange', (req, res) => {
     changeName(reqData);
     res.send(JSON.parse(fs.readFileSync('../../server/data/player/' + selectedPlayer + '.json')));
 })
-
 
 
 

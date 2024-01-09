@@ -1,9 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-const host = 'http://localhost:3000';
-
-const Stats = () => {
+const Stats = ({host}) => {
 
     const [healthCurrent, setHealthCurrent] = useState();
     const [healthBase, setHealthBase] = useState();
@@ -23,8 +21,7 @@ const Stats = () => {
         setFatigueBase(data.fatigueBase);
         setFatigueCurrent(data.fatigueCurrent);
         setLevel(data.level);
-        setLevelProgress(data.levelProgress)
-        console.log(data); 
+        setLevelProgress(data.levelProgress);
     }
 
     axios.get(`${host}/`)

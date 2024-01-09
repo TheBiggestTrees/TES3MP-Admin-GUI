@@ -3,10 +3,7 @@ import axios from 'axios';
 import Stats from './Stats.jsx';
 
 
-const host = 'http://localhost:3000';
-
-
-export default function PlayerSelect() {
+export default function PlayerSelect({host}) {
 
   const [nameText, setNameText] = useState('');
   const [playerName, setPlayerName] = useState(null);
@@ -14,7 +11,6 @@ export default function PlayerSelect() {
   const [selectedPlayer, setSelectedPlayer] = useState();
 
   useEffect(() => {
-    
     axios.get(`${host}/players`)
     .then(res => {
 
@@ -84,7 +80,7 @@ export default function PlayerSelect() {
           <input className='bg-[#03030334] text-[#8b9cd3] rounded-full' name='playerName' value={nameText} type='text' onChange={handleName}></input>
           <button type='button' onClick={handleChange} >Change Name</button>
         </form>
-        <Stats />
+        <Stats host={host}/>
       </div>
 
     </>
