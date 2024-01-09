@@ -6,7 +6,6 @@ This program was made to be able to modify player data for TES3MP while that pla
 ## Features
 - Modify, add, or delete player data , i.e.
   - Character Name
-  - Inventory
   - Faction Ranks and Expulsions
   - Server Staff Rank
   - All Player Skills and Attributes
