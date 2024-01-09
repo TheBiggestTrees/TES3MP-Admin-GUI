@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: morrowind;
+  src: url('./assets/Magic_Cards.ttf');
+}
+
+:root {
+font-family: morrowind;
+background-color: #000000d8;
+color: #ecce24da;
+border-color: #ecce24da;
+}
