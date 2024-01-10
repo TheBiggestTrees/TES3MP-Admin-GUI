@@ -19,7 +19,7 @@ const Stats = ({host}) => {
             setStats(data);                   
         })
             
-    })
+    }, [])
 
     function setStats(data) {
         setHealthBase(Math.floor(data.healthBase));

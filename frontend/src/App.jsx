@@ -7,22 +7,25 @@ import Login from './Login.jsx';
 function App() {
 
   const [iP, setIP] = useState('');
-  const [players, setPlayers] = useState([]);
 
   function setIpAddress(ip) {
     setIP(`http://${ip}:3000`);
   } 
 
-  function Players(players) {
-    setPlayers(players);
+  // function Players(players) {
+  //   setPlayers(players);
+  // }
+
+  function showSettings() {
+    setIP('');
   }
 
   return (
     <>
       {iP}
-      <Login setIpAddress={setIpAddress} host={iP} players={Players}/>
+      {iP && <button className='border-2 border-[#ecce24b4] w-36 h-12' onClick={showSettings}>Settings</button>}
+      {!iP && <Login setIpAddress={setIpAddress} host={iP} />}
       {iP && <PlayerSelect host={iP}/>}
-      
     </>
   )
 }
