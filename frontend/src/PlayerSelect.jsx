@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Stats from './Stats.jsx';
 import Fame from './Fame.jsx';
+import Attributes from './Attributes.jsx';
 
 
 export default function PlayerSelect({ host }) {
@@ -28,7 +29,7 @@ export default function PlayerSelect({ host }) {
   const PlayerData = () => {
     return (
       <>
-        {selectedPlayer && <div>
+        <div>
           <div>Selected Player: {selectedPlayer}</div>
           <div className='font-bold text-lg'>Character Name: {playerName}</div>
           <form onSubmit={handleChange}>
@@ -37,7 +38,8 @@ export default function PlayerSelect({ host }) {
           </form>
           <Stats host={host} />
           <Fame host={host} />
-        </div>}
+          <Attributes host={host}/>
+        </div>
       </>
     )
   }
@@ -60,11 +62,11 @@ export default function PlayerSelect({ host }) {
 
   }
 
-  function handleName(e) {
+  const handleName = (e) => {
     setNameText(e.target.value);
   }
 
-  function handleChangePlayer(id) {
+  const handleChangePlayer = (id) => {
     axios.put(`${host}/selectPlayer`, {
       player: id,
     })
@@ -90,7 +92,7 @@ export default function PlayerSelect({ host }) {
           )
         })}
 
-        <PlayerData />
+        {selectedPlayer && <PlayerData />}
 
       </div>
 

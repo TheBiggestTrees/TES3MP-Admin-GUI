@@ -21,7 +21,7 @@ const Stats = ({host}) => {
             
     }, [])
 
-    function setStats(data) {
+    const setStats = (data) => {
         setHealthBase(Math.floor(data.healthBase));
         setHealthCurrent(Math.floor(data.healthCurrent));
         setMagickaBase(Math.floor(data.magickaBase));
