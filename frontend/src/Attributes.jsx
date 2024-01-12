@@ -1,8 +1,9 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { DataContext } from './DataContext';
 
-const Attributes = ({ host }) => {
+const Attributes = () => {
 
+  const [playerData, setPlayerData] = useContext(DataContext);
   const [strength, setStrength] = useState([]);
   const [agility, setAgility] = useState([]);
   const [willpower, setWillpower] = useState([]);
@@ -13,42 +14,41 @@ const Attributes = ({ host }) => {
   const [personality, setPersonality] = useState([]);
 
   useEffect(() => {
-    axios.get(`${host}/`)
-      .then((res) => {
-        const data = res.data.attributes;
+    
+    const playerDataAtr = playerData.attributes
 
-        for (const key in data) {
+        for (const key in playerDataAtr) {
           switch (key) {
             case 'Strength':
-              setStrength([data.Strength.base, data.Strength.damage, data.Strength.skillIncrease]);
+              setStrength([playerDataAtr.Strength.base, playerDataAtr.Strength.damage, playerDataAtr.Strength.skillIncrease]);
               break;
 
             case 'Agility':
-              setAgility([data.Agility.base, data.Agility.damage, data.Agility.skillIncrease]);
+              setAgility([playerDataAtr.Agility.base, playerDataAtr.Agility.damage, playerDataAtr.Agility.skillIncrease]);
               break;
 
             case 'Willpower':
-              setWillpower([data.Willpower.base, data.Willpower.damage, data.Willpower.skillIncrease]);
+              setWillpower([playerDataAtr.Willpower.base, playerDataAtr.Willpower.damage, playerDataAtr.Willpower.skillIncrease]);
               break;
 
             case 'Speed':
-              setSpeed([data.Speed.base, data.Speed.damage, data.Speed.skillIncrease]);
+              setSpeed([playerDataAtr.Speed.base, playerDataAtr.Speed.damage, playerDataAtr.Speed.skillIncrease]);
               break;
 
             case 'Intelligence':
-              setIntelligence([data.Intelligence.base, data.Intelligence.damage, data.Intelligence.skillIncrease]);
+              setIntelligence([playerDataAtr.Intelligence.base, playerDataAtr.Intelligence.damage, playerDataAtr.Intelligence.skillIncrease]);
               break;
 
             case 'Endurance':
-              setEndurance([data.Endurance.base, data.Endurance.damage, data.Endurance.skillIncrease]);
+              setEndurance([playerDataAtr.Endurance.base, playerDataAtr.Endurance.damage, playerDataAtr.Endurance.skillIncrease]);
               break;
 
             case 'Luck':
-              setLuck([data.Luck.base, data.Luck.damage, data.Luck.skillIncrease]);
+              setLuck([playerDataAtr.Luck.base, playerDataAtr.Luck.damage, playerDataAtr.Luck.skillIncrease]);
               break;
 
             case 'Personality':
-              setPersonality([data.Personality.base, data.Personality.damage, data.Personality.skillIncrease]);
+              setPersonality([playerDataAtr.Personality.base, playerDataAtr.Personality.damage, playerDataAtr.Personality.skillIncrease]);
               break;
 
             default:
@@ -56,8 +56,7 @@ const Attributes = ({ host }) => {
           }
         }
 
-      })
-  }, [])
+      }, [])
 
   return (
     <>

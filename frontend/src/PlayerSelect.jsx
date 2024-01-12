@@ -3,6 +3,7 @@ import axios from 'axios';
 import Stats from './Stats.jsx';
 import Fame from './Fame.jsx';
 import Attributes from './Attributes.jsx';
+import { DataContext } from './DataContext.jsx';
 
 
 export default function PlayerSelect({ host }) {
@@ -11,6 +12,7 @@ export default function PlayerSelect({ host }) {
   const [playerName, setPlayerName] = useState(null);
   const [selectedPlayer, setSelectedPlayer] = useState();
   const [players, setPlayers] = useState([]);
+  const [data, setData] = useState({});
 
   useEffect(() => {
     axios.get(`${host}/players`)
@@ -24,6 +26,7 @@ export default function PlayerSelect({ host }) {
           }
         })
       })
+    
   }, [])
 
   const PlayerData = () => {
@@ -36,9 +39,11 @@ export default function PlayerSelect({ host }) {
             <input className='bg-[#03030334] text-[#8b9cd3] rounded-full' name='playerName' value={nameText} type='text' onChange={handleName}></input>
             <button type='button' className='border-2 border-[#ecce24b4] w-36 h-12' onClick={handleChange} >Change Name</button>
           </form>
-          <Stats host={host} />
-          <Fame host={host} />
-          <Attributes host={host}/>
+          <DataContext.Provider value={[data, setData]}>
+            <Stats />
+            <Fame />
+            <Attributes />
+          </DataContext.Provider>
         </div>
       </>
     )
@@ -74,7 +79,9 @@ export default function PlayerSelect({ host }) {
         setSelectedPlayer(res.data);
       }).then(() => {
         axios.get(`${host}/`).then((res) => {
-          setPlayerName(res.data.login.name)
+          const datax = res.data;
+          setData(datax);
+          setPlayerName(datax.login.name);
         })
       })
 
