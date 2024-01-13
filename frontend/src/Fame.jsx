@@ -16,9 +16,11 @@ const Fame = () => {
 
   return (
     <>
-        <div className='text-xl font-bold'>Fame</div>
-        <div>Bounty: {bounty}</div>
-        <div>Reputation: {rep}</div>
+        <div className="flex w-full flex-col">
+          <div className='text-xl font-bold'>Fame</div>
+          <div>Bounty: {bounty}</div>
+          <div>Reputation: {rep}</div>
+        </div>
     </>
   )
 }

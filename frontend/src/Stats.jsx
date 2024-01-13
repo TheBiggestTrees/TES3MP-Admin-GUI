@@ -33,12 +33,14 @@ const Stats = () => {
    
     return (
         <>
-            <div className='font-bold text-xl'>Stats</div>
-            <div>Level: {level}</div>
-            <div>Level Progress: {levelProgress} / 100</div>
-            <div>Health: {healthCurrent} / {healthBase}</div>
-            <div>Magicka: {magickaCurrent} / {magickaBase}</div>
-            <div>Fatigue: {fatigueCurrent} / {fatigueBase}</div>
+            <div className="flex w-full flex-col">
+                <div className='font-bold text-xl'>Stats</div>
+                <div>Level: {level}</div>
+                <div>Level Progress: {levelProgress} / 100</div>
+                <div>Health: {healthCurrent} / {healthBase}</div>
+                <div>Magicka: {magickaCurrent} / {magickaBase}</div>
+                <div>Fatigue: {fatigueCurrent} / {fatigueBase}</div>
+            </div>
         </>
     )
 }

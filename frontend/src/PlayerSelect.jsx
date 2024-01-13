@@ -4,6 +4,7 @@ import Stats from './Stats.jsx';
 import Fame from './Fame.jsx';
 import Attributes from './Attributes.jsx';
 import { DataContext } from './DataContext.jsx';
+import Skills from './Skills.jsx';
 
 
 export default function PlayerSelect({ host }) {
@@ -61,15 +62,18 @@ export default function PlayerSelect({ host }) {
   const PlayerData = () => {
     return (
       <>
-        <div>
+        <div className='flex flex-col gap-y-4'>
 
-          <div className='font-bold text-lg'>Character Name: {playerName}</div>
+          <div className='font-bold text-lg mt-8'>Character Name: {playerName}</div>
           
           <DataContext.Provider value={[data, setData]}>
 
-            <Stats />
-            <Fame />
+            <div className="flex justify-start">
+              <Stats />
+              <Fame />
+            </div>
             <Attributes />
+            <Skills />
 
           </DataContext.Provider>
         </div>
@@ -81,13 +85,19 @@ export default function PlayerSelect({ host }) {
     <>
 
       <div className='tracking-[.125rem]'>
-        {players.map((item, id) => {
-          return (
-            <button onClick={() => handleChangePlayer(item)} className='border-2 border-[#ecce24b4] w-36 h-12' key={id}>
-              {item}
-            </button>
-          )
-        })}
+
+          <div className="flex flex-col w-fit items-center gap-4 mt-8 border-2 p-8 border-[#ecce24b4]">
+          <span>Players</span>
+          <div className='flex gap-8 justify-center'>
+            {players.map((item, id) => {
+              return (
+                <button onClick={() => handleChangePlayer(item)} className={ item == playerName ? 'border-2 border-[#8b9cd3] w-36 h-12  text-[#8b9cd3]' : 'border-2 border-[#ecce24b4] w-36 h-12 '} key={id}>
+                  {item}
+                </button>
+              )
+            })}
+          </div>
+        </div>
 
         {data.login && <PlayerData />}
 
