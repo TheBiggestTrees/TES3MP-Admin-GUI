@@ -62,7 +62,7 @@ export default function PlayerSelect({ host }) {
   const PlayerData = () => {
     return (
       <>
-        <div className='flex flex-col gap-y-4'>
+        <div className='flex flex-col gap-y-4 w-full'>
 
           <div className='font-bold text-lg mt-8'>Character Name: {playerName}</div>
           
@@ -89,9 +89,9 @@ export default function PlayerSelect({ host }) {
 
       <div className='tracking-[.125rem]'>
 
-          <div className="flex flex-col w-fit items-center gap-4 mt-8 border-2 p-8 border-[#ecce24b4]">
+          <div className="flex flex-col items-center gap-4 mt-8 border-2 p-8 border-[#ecce24b4]">
           <span>Players</span>
-          <div className='flex gap-8 justify-center'>
+          <div className='flex gap-8 items-center'>
             {players.map((item, id) => {
               return (
                 <button onClick={() => handleChangePlayer(item)} className={ item == playerName ? 'border-2 border-[#8b9cd3] w-36 h-12  text-[#8b9cd3]' : 'border-2 border-[#ecce24b4] w-36 h-12 '} key={id}>
