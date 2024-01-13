@@ -68,12 +68,12 @@ export default function PlayerSelect({ host }) {
           
           <DataContext.Provider value={[data, setData]}>
 
-            <div className="flex justify-start">
+            <div className="flex gap-4">
               <Stats />
               <Fame />
             </div>
             
-            <div className="flex">
+            <div className="flex gap-4">
               <Skills />
               <Attributes />
             </div>

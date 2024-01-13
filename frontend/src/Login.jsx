@@ -6,8 +6,10 @@ const Login = ({setIpAddress}) => {
     const [serverIP, setServerIP] = useState('');
 
     const handleSubmit = (e) => {
-        setIpAddress(serverIP);
-        setServerIP('');        
+        if(serverIP !== '') {
+            setIpAddress(serverIP);
+            setServerIP('');        
+        }
         e.preventDefault();
     };
 
