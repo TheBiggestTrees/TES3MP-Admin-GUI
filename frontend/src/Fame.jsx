@@ -8,7 +8,6 @@ const Fame = () => {
     const [bounty, setBounty] = useState();
     const [rep, setRep] = useState();
 
-            setBounty(data.bounty);
     useEffect(() => {
         const data = playerData.fame;
         setBounty(data.bounty);
