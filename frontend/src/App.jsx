@@ -12,20 +12,17 @@ function App() {
     setIP(`http://${ip}:3000`);
   } 
 
-  // function Players(players) {
-  //   setPlayers(players);
-  // }
-
   function showSettings() {
     setIP('');
   }
 
   return (
     <>
-      {iP}
-      {iP && <button className='border-2 border-[#ecce24b4] w-36 h-12' onClick={showSettings}>Settings</button>}
-      {!iP && <Login setIpAddress={setIpAddress} host={iP} />}
-      {iP && <PlayerSelect host={iP}/>}
+      <div className='flex flex-col gap-8 w-100vw items-center '>
+        {iP && <button className='border-2 border-[#ecce24b4] w-36 h-12' onClick={showSettings}>Change Server</button>}
+        {!iP && <Login setIpAddress={setIpAddress} host={iP} />}
+        {iP && <PlayerSelect host={iP}/>}
+      </div>
     </>
   )
 }
