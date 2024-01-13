@@ -13,6 +13,7 @@ export default function PlayerSelect({ host }) {
   const [selectedPlayer, setSelectedPlayer] = useState();
   const [players, setPlayers] = useState([]);
   const [data, setData] = useState({});
+  const [hasData, setHasData] = useState(false);
 
   useEffect(() => {
     axios.get(`${host}/players`)
@@ -83,6 +84,7 @@ export default function PlayerSelect({ host }) {
           setData(datax);
           setPlayerName(datax.login.name);
         })
+        setHasData(true);
       })
 
   }
@@ -99,7 +101,7 @@ export default function PlayerSelect({ host }) {
           )
         })}
 
-        {selectedPlayer && <PlayerData />}
+        {hasData && <PlayerData />}
 
       </div>
 

@@ -1,8 +1,9 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { DataContext } from './DataContext';
 
-const Stats = ({host}) => {
+const Stats = () => {
 
+    const [playerData, setPlayerData] = useContext(DataContext);
     const [healthCurrent, setHealthCurrent] = useState();
     const [healthBase, setHealthBase] = useState();
     const [magickaCurrent, setMagickaCurrent] = useState();
@@ -13,12 +14,8 @@ const Stats = ({host}) => {
     const [levelProgress, setLevelProgress] = useState();
 
     useEffect(() => {
-        axios.get(`${host}/`)
-        .then(res => {
-            const data = res.data.stats;
-            setStats(data);                   
-        })
-            
+        const data = playerData.stats
+        setStats(data);                        
     }, [])
 
     const setStats = (data) => {
