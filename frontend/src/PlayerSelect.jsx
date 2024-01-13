@@ -72,8 +72,11 @@ export default function PlayerSelect({ host }) {
               <Stats />
               <Fame />
             </div>
-            <Attributes />
-            <Skills />
+            
+            <div className="flex">
+              <Skills />
+              <Attributes />
+            </div>
 
           </DataContext.Provider>
         </div>
