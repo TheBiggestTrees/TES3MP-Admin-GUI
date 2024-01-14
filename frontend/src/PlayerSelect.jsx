@@ -5,6 +5,7 @@ import Fame from './Fame.jsx';
 import Attributes from './Attributes.jsx';
 import { DataContext } from './DataContext.jsx';
 import Skills from './Skills.jsx';
+import Properties from './Properties.jsx';
 
 
 export default function PlayerSelect({ host }) {
@@ -62,11 +63,15 @@ export default function PlayerSelect({ host }) {
   const PlayerData = () => {
     return (
       <>
-        <div className='flex flex-col gap-y-4 w-full'>
+        <div className='flex flex-col gap-y-4 w-full overflow-y-scroll no-scrollbar scro overflow-x-hidden bg-[#00000038] border-2 p-8 border-[#ecce24b4]'>
 
-          <div className='font-bold text-lg mt-8'>Character Name: {playerName}</div>
+          <div className='font-bold text-lg'>Character Name: {playerName}</div>
           
           <DataContext.Provider value={[data, setData]}>
+
+            <div className='flex gap-4'>
+              <Properties />
+            </div>
 
             <div className="flex gap-4">
               <Stats />
@@ -87,14 +92,14 @@ export default function PlayerSelect({ host }) {
   return (
     <>
 
-      <div className='tracking-[.125rem]'>
+      <div className='tracking-[.125rem] flex flex-col h-[96vh]'>
 
-          <div className="flex flex-col items-center gap-4 mt-8 border-2 p-8 border-[#ecce24b4]">
+          <div className="flex flex-col bg-[#00000038] items-center gap-4 my-8 border-2 p-8 border-[#ecce24b4]">
           <span>Players</span>
           <div className='flex gap-8 items-center'>
             {players.map((item, id) => {
               return (
-                <button onClick={() => handleChangePlayer(item)} className={ item == playerName ? 'border-2 border-[#8b9cd3] w-36 h-12  text-[#8b9cd3]' : 'border-2 border-[#ecce24b4] w-36 h-12 '} key={id}>
+                <button onClick={() => handleChangePlayer(item)} className={ item == playerName ? 'border-2 bg-[#ffffff09] border-[#8b9cd3] w-36 h-12  text-[#8b9cd3]' : 'border-2 border-[#ecce24b4] w-36 h-12 '} key={id}>
                   {item}
                 </button>
               )
