@@ -6,7 +6,6 @@ const Attributes = () => {
   const [playerData, setPlayerData] = useContext(DataContext);
   const [attributes, setAttributes] = useState(Object.values(playerData.attributes));
 
-  console.log(attributes)
   return (
     <>
 
