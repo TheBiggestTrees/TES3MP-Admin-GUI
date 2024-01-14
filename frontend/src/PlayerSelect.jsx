@@ -75,7 +75,7 @@ export default function PlayerSelect({ host }) {
 
             <div className="flex gap-4">
               <Stats />
-              <Fame />
+              <Fame host={ host } />
             </div>
             
             <div className="flex gap-4">
