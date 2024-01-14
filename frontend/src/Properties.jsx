@@ -21,9 +21,10 @@ const Properties = ({ host }) => {
     
 
     const handleSettingsChange = () => {
-        
-        
-        axios.put(`${host}/dataChange`, staffRank)        
+        axios.put(`${host}/dataChange`, staffRank)
+        .then(res => {
+            setPlayerData(res.data);
+        })
         
     }
 
@@ -58,12 +59,12 @@ const Properties = ({ host }) => {
                                 defaultValue={`${staffRank}`} className='bg-transparent' 
                                 name="staffRank" 
                                 id="staffRank">
-                                  <option className='bg-[#00000034] text-[#707eac]' value='0'>Player</option>
-                                  <option className='bg-[#00000034] text-[#707eac]' value='1'>Moderator</option>
-                                  <option className='bg-[#00000034] text-[#707eac]' value='2'>Administrator</option>
-                                  <option className='bg-[#000000af] text-[#707eac]' value='3'>Server Owner</option>
+                                  <option className='bg-[#000000af] text-[#8392c5]' value='0'>Player</option>
+                                  <option className='bg-[#000000af] text-[#8392c5]' value='1'>Moderator</option>
+                                  <option className='bg-[#000000af] text-[#8392c5]' value='2'>Administrator</option>
+                                  <option className='bg-[#000000af] text-[#8392c5]' value='3'>Server Owner</option>
                               </select>
-                              <button onClick={handleSettingsChange}>Change</button>
+                              {playerData.settings.staffRank === staffRank || playerData.settings.staffRank === staffRank.settings.staffRank ? <></> : <button onClick={handleSettingsChange}>Change</button> }
                           </div>)
 
                       } else if (index > 3) {
