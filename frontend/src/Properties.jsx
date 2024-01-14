@@ -20,15 +20,11 @@ const Properties = ({ host }) => {
 
     
 
-    const handleDataChange = () => {
-        axios.put(`${host}/dataChange`, {
-            settings: {
-                staffRank: staffRank,
-            }
-        })        
-
+    const handleSettingsChange = () => {
         
-
+        
+        axios.put(`${host}/dataChange`, staffRank)        
+        
     }
 
   return (
@@ -52,16 +48,23 @@ const Properties = ({ host }) => {
                       if (index === 7) {
 
 
-                          return (<form onSubmit={e => e.preventDefault()} key={index}>
+                          return (<div onSubmit={e => e.preventDefault()} key={index}>
                               <label htmlFor='staffRank'>{playerProps[index]}</label>
-                              <select onChange={e => setStaffRank(e.target.value)} defaultValue={staffRank} className='bg-transparent' name="staffRank" id="staffRank">
+                              <select onChange={e => setStaffRank(
+                                    {settings:
+                                        {staffRank: e.target.value}
+                                    }
+                                )} 
+                                defaultValue={`${staffRank}`} className='bg-transparent' 
+                                name="staffRank" 
+                                id="staffRank">
                                   <option className='bg-[#00000034] text-[#707eac]' value='0'>Player</option>
                                   <option className='bg-[#00000034] text-[#707eac]' value='1'>Moderator</option>
                                   <option className='bg-[#00000034] text-[#707eac]' value='2'>Administrator</option>
                                   <option className='bg-[#000000af] text-[#707eac]' value='3'>Server Owner</option>
                               </select>
-                              <button onClick={handleDataChange}>Change</button>
-                          </form>)
+                              <button onClick={handleSettingsChange}>Change</button>
+                          </div>)
 
                       } else if (index > 3) {
                           return (
