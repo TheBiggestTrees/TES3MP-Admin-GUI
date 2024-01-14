@@ -21,6 +21,14 @@ const changeName = (reqData) => {
     fs.writeFileSync(path, JSON.stringify(data, null, 4));
 }
 
+const changeData = (reqData) => {
+    const path = '../../server/data/player/' + selectedPlayer + '.json';
+    const data = JSON.parse(fs.readFileSync(path));
+
+    data.settings.staffRank = reqData.settings.staffRank;
+
+    fs.writeFileSync(path, JSON.stringify(data, null, 4));
+}
 
 app.use(cors());
 app.use(express.json());
@@ -46,10 +54,9 @@ app.put('/selectPlayer', (req, res) => {
     res.send(reqData.player);
 })
 
-app.put('/nameChange', (req, res) => {
-    
+app.put('/dataChange', (req, res) => {
     const reqData = req.body;
-    changeName(reqData);
+    changeData(reqData);
     res.send(JSON.parse(fs.readFileSync('../../server/data/player/' + selectedPlayer + '.json')));
 })
 

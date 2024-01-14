@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { DataContext } from './DataContext';
+import axios from 'axios';
 
-const Properties = () => {
+const Properties = ({ host }) => {
 
     const [playerData, setPlayerData] = useContext(DataContext)
     const [properties, setProperties] = useState(Object.values(playerData.settings));
@@ -15,8 +16,20 @@ const Properties = () => {
         'Wait Allowed: ',
         'Staff Rank: ',
     ])
+    const [staffRank, setStaffRank] = useState(playerData.settings.staffRank);
 
+    
 
+    const handleDataChange = () => {
+        axios.put(`${host}/dataChange`, {
+            settings: {
+                staffRank: staffRank,
+            }
+        })        
+
+        
+
+    }
 
   return (
     <div className='flex flex-col w-full'>
@@ -35,36 +48,23 @@ const Properties = () => {
                 })}
             </div>
             <div className='flex flex-col w-full'>
-                {properties.map((item, index) => {
-                    if (index === 7) {
+                  {properties.map((item, index) => {
+                      if (index === 7) {
 
-                        if(item === 0) {
-                            return (
-                            <div key={index}>
-                                {playerProps[index]}Player
-                            </div>
-                        )}
-                        else if(item === 1) {
-                            return (
-                            <div key={index}>
-                                {playerProps[index]}Moderator
-                            </div>
-                        )}
-                        else if(item === 2) {
-                            return (
-                            <div key={index}>
-                                {playerProps[index]}Administrator
-                            </div>
-                        )}
-                        else if(item === 3) {
-                            return (
-                            <div key={index}>
-                                {playerProps[index]}Server Owner
-                            </div>
-                        )}
 
-                    } else if(index > 3) {
-                        return (
+                          return (<form onSubmit={e => e.preventDefault()} key={index}>
+                              <label htmlFor='staffRank'>{playerProps[index]}</label>
+                              <select onChange={e => setStaffRank(e.target.value)} defaultValue={staffRank} className='bg-transparent' name="staffRank" id="staffRank">
+                                  <option className='bg-[#00000034] text-[#707eac]' value='0'>Player</option>
+                                  <option className='bg-[#00000034] text-[#707eac]' value='1'>Moderator</option>
+                                  <option className='bg-[#00000034] text-[#707eac]' value='2'>Administrator</option>
+                                  <option className='bg-[#000000af] text-[#707eac]' value='3'>Server Owner</option>
+                              </select>
+                              <button onClick={handleDataChange}>Change</button>
+                          </form>)
+
+                      } else if (index > 3) {
+                          return (
                             <div key={index}>
                                 {playerProps[index]}{item}
                             </div>

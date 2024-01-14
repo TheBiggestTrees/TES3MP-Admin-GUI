@@ -70,7 +70,7 @@ export default function PlayerSelect({ host }) {
           <DataContext.Provider value={[data, setData]}>
 
             <div className='flex gap-4'>
-              <Properties />
+              <Properties host={ host } />
             </div>
 
             <div className="flex gap-4">
