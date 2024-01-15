@@ -26,6 +26,16 @@ const changeFame = (reqData) => {
     const data = JSON.parse(fs.readFileSync(path));
     
     data.fame.bounty = reqData.fame.bounty;
+    data.fame.reputation = reqData.fame.bounty;
+
+    fs.writeFileSync(path, JSON.stringify(data, null, 4));
+}
+
+const changeStats = (reqData) => {
+    const path = '../../server/data/player/' + selectedPlayer + '.json';
+    const data = JSON.parse(fs.readFileSync(path));
+    
+    data.stats = reqData.stats;
 
     fs.writeFileSync(path, JSON.stringify(data, null, 4));
 }
@@ -57,6 +67,12 @@ app.put('/selectPlayer', (req, res) => {
 app.put('/fameChange', (req, res) => {
     const reqData = req.body;
     changeFame(reqData);
+    res.send(JSON.parse(fs.readFileSync('../../server/data/player/' + selectedPlayer + '.json')));
+})
+
+app.put('/statsChange', (req, res) => {
+    const reqData = req.body;
+    changeStats(reqData);
     res.send(JSON.parse(fs.readFileSync('../../server/data/player/' + selectedPlayer + '.json')));
 })
 
