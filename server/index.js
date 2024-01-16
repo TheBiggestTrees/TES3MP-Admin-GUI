@@ -25,9 +25,9 @@ const changeFame = (req) => {
     const path = '../../server/data/player/' + selectedPlayer + '.json';
     const data = JSON.parse(fs.readFileSync(path));
 
-    data.fame.bounty = req.body.fame.bounty
+    data.fame.bounty = parseInt(req.body.fame.bounty)
     
-    data.fame.reputation = req.body.fame.reputation;
+    data.fame.reputation = parseInt(req.body.fame.reputation);
 
     fs.writeFileSync(path, JSON.stringify(data, null, 4));
 }
@@ -35,9 +35,8 @@ const changeFame = (req) => {
 const changeProperties = (reqData) => {
     const path = '../../server/data/player/' + selectedPlayer + '.json';
     const data = JSON.parse(fs.readFileSync(path));
-    const num = parseInt(reqData.settings.staffRank)
    
-    data.settings.staffRank = num;
+    data.settings.staffRank = parseInt(reqData.settings.staffRank);
 
     fs.writeFileSync(path, JSON.stringify(data, null, 4));
 }
