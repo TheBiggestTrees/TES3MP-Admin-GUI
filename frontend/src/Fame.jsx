@@ -89,19 +89,19 @@ const Fame = ({ host }) => {
           <form onSubmit={e => {e.preventDefault()
           sendData()}}>
             <label htmlFor='bounty'>Bounty:
-              <input name='bounty' id='bounty' type='number' className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da]' placeholder={bounty} value={ inputBounty } onChange={e => {setInputBounty(e.target.value)
+              <input name='bounty' id='bounty' type='number' className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da] px-1' placeholder={bounty} value={ inputBounty } onChange={e => {setInputBounty(e.target.value)
               setDataReady(true);}} ></input>
 
             </label>
             
             <label htmlFor='rep'>Reputation:
-              <input name='rep' id='rep' type='number' className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da]' placeholder={rep} value={ inputRep } onChange={e => {setInputRep(e.target.value);
+              <input name='rep' id='rep' type='number' className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da] px-1' placeholder={rep} value={ inputRep } onChange={e => {setInputRep(e.target.value);
               setDataReady(true);}}
                 
                  ></input>
             
             </label>
-            {dataReady && <button type='submit' onClick={() => handleSettingsChange()}>Change</button>}
+            {dataReady && <button className='border-2 px-2 mt-2 border-[#ecce24da]' type='submit' onClick={() => handleSettingsChange()}>Change</button>}
           </form>
 
         </div>

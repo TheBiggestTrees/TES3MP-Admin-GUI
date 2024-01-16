@@ -17,15 +17,15 @@ const Properties = ({ host }) => {
         'Staff Rank: ',
     ])
     const [staffRank, setStaffRank] = useState(playerData.settings.staffRank);
-
+    const [playerDataStaff, setPlayerDataStaff] = useState(playerData.settings.staffRank);
     
 
     const handleSettingsChange = () => {
         axios.put(`${host}/propertiesChange`, staffRank)
         .then(res => {
-            setPlayerData(res.data);
+            setPlayerDataStaff(res.data.settings.staffRank);
+            setStaffRank(res.data.settings.staffRank);
         })
-        
     }
 
   return (
@@ -51,20 +51,23 @@ const Properties = ({ host }) => {
 
                           return (<div onSubmit={e => e.preventDefault()} key={index}>
                               <label htmlFor='staffRank'>{playerProps[index]}</label>
-                              <select onChange={e => setStaffRank(
+                              <select onChange={e => {setStaffRank(
                                     {settings:
                                         {staffRank: e.target.value}
                                     }
-                                )} 
-                                defaultValue={`${staffRank}`} className='bg-transparent' 
+                                )}} 
+                                defaultValue={staffRank} className='bg-transparent' 
                                 name="staffRank" 
                                 id="staffRank">
-                                  <option className='bg-[#000000af] text-[#8392c5]' value='0'>Player</option>
-                                  <option className='bg-[#000000af] text-[#8392c5]' value='1'>Moderator</option>
-                                  <option className='bg-[#000000af] text-[#8392c5]' value='2'>Administrator</option>
-                                  <option className='bg-[#000000af] text-[#8392c5]' value='3'>Server Owner</option>
+                                  <option className='bg-[#000000af] text-[#8392c5]' value={0}>Player</option>
+                                  <option className='bg-[#000000af] text-[#8392c5]' value={1}>Moderator</option>
+                                  <option className='bg-[#000000af] text-[#8392c5]' value={2}>Administrator</option>
+                                  <option className='bg-[#000000af] text-[#8392c5]' value={3}>Server Owner</option>
                               </select>
-                              {playerData.settings.staffRank === staffRank || playerData.settings.staffRank === staffRank.settings.staffRank ? <></> : <button onClick={handleSettingsChange}>Change</button> }
+                              {playerDataStaff != staffRank ? <button className='border-2 px-2 mt-2 border-[#ecce24da]' onClick={() => {
+                                handleSettingsChange()
+                                
+                                }}>Change</button> : null }
                           </div>)
 
                       } else if (index > 3) {
