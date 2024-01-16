@@ -8,49 +8,60 @@ const Fame = ({ host }) => {
     const [playerData, setPlayerData] = useContext(DataContext)
     const [bounty, setBounty] = useState(playerData.fame.bounty);
     const [rep, setRep] = useState(playerData.fame.reputation);
-    const [createSend, setCreateSend] = useState(``);
     const [inputBounty, setInputBounty] = useState('');
     const [inputRep, setInputRep] = useState('');
+    const [createSend, setCreateSend] = useState({fame: {reputation: inputRep, bounty: inputBounty}});
+
+    const [dataReady, setDataReady] = useState();
+
+    
+    
     useEffect(() => {
         const data = playerData.fame;
         setBounty(data.bounty);
         setRep(data.reputation);
     }, [])
 
+
   function handleSettingsChange() {
+    
+      if (inputRep === '' && inputBounty === '') {
 
-      if (inputRep === '' || inputRep === rep) {
-        setCreateSend(
-          {
+        setCreateSend({
             fame: {
-              reputation: playerData.fame.reputation,
-              bounty: inputBounty
+              reputation: rep,
+              bounty: bounty
             }
-          }
-        )
+          });
 
-      } else if (inputBounty === '' || inputBounty === bounty) {
-        setCreateSend(
-          {
-            fame: {
-              reputation: inputRep,
-              bounty: playerData.fame.bounty
-            }
+      } else if (inputRep === '') {
+        setCreateSend({
+          fame: {
+            reputation: rep,
+            bounty: inputBounty
           }
-        )
-  
+        });
+
+      } else if (inputBounty === '') {
+        setCreateSend({
+          fame: {
+            reputation: inputRep,
+            bounty: bounty
+          }
+        });
+
       } else {
-        setCreateSend(
-          {
-            fame: {
-              reputation: inputRep,
-              bounty: inputBounty
-            }
-          })
+        setCreateSend({
+          fame: {
+            reputation: inputRep,
+            bounty: inputBounty
+          }
+        });
         
       }
+        
 
-      sendData()
+
     }
     
     function sendData() {
@@ -58,31 +69,39 @@ const Fame = ({ host }) => {
         try {
           axios.put(`${host}/fameChange`, createSend).then(res =>
             {
-              console.log(res)
+              setBounty(res.data.fame.bounty);
+              setRep(res.data.fame.reputation);
             });
         } catch (error) {
           console.log(error);
         }
-          // setInputRep('');
-          // setInputBounty('');
-          // setCreateSend('');
+
+        setInputBounty('');
+        setInputRep('');
+        setDataReady(false);
+
     }
     
   return (
     <>
         <div className="flex w-full flex-col">
           <div className='text-xl font-bold' >Fame</div>
-          <form onSubmit={e => {e.preventDefault()}}>
+          <form onSubmit={e => {e.preventDefault()
+          sendData()}}>
             <label htmlFor='bounty'>Bounty:
-              <input name='bounty' id='bounty' type='number' className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da]' placeholder={bounty} value={ inputBounty } onChange={e => setInputBounty(e.target.value)} ></input>
-            
+              <input name='bounty' id='bounty' type='number' className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da]' placeholder={bounty} value={ inputBounty } onChange={e => {setInputBounty(e.target.value)
+              setDataReady(true);}} ></input>
+
             </label>
             
             <label htmlFor='rep'>Reputation:
-              <input name='rep' id='rep' type='number' className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da]' placeholder={rep} value={ inputRep } onChange={e => setInputRep(e.target.value)} ></input>
+              <input name='rep' id='rep' type='number' className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da]' placeholder={rep} value={ inputRep } onChange={e => {setInputRep(e.target.value);
+              setDataReady(true);}}
+                
+                 ></input>
             
             </label>
-            {<button onClick={() => handleSettingsChange()}>Change</button>}
+            {dataReady && <button type='submit' onClick={() => handleSettingsChange()}>Change</button>}
           </form>
 
         </div>
