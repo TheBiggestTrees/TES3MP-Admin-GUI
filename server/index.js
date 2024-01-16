@@ -32,11 +32,12 @@ const changeFame = (req) => {
     fs.writeFileSync(path, JSON.stringify(data, null, 4));
 }
 
-const changeStats = (reqData) => {
+const changeProperties = (reqData) => {
     const path = '../../server/data/player/' + selectedPlayer + '.json';
     const data = JSON.parse(fs.readFileSync(path));
-    
-    data.stats = reqData.stats;
+    const num = parseInt(reqData.settings.staffRank)
+   
+    data.settings.staffRank = num;
 
     fs.writeFileSync(path, JSON.stringify(data, null, 4));
 }
@@ -70,9 +71,9 @@ app.put('/fameChange', (req, res) => {
     res.send(JSON.parse(fs.readFileSync('../../server/data/player/' + selectedPlayer + '.json')));
 })
 
-app.put('/statsChange', (req, res) => {
+app.put('/propertiesChange', (req, res) => {
     const reqData = req.body;
-    changeStats(reqData);
+    changeProperties(reqData);
     res.send(JSON.parse(fs.readFileSync('../../server/data/player/' + selectedPlayer + '.json')));
 })
 

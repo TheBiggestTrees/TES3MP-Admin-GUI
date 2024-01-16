@@ -21,7 +21,7 @@ const Properties = ({ host }) => {
     
 
     const handleSettingsChange = () => {
-        axios.put(`${host}/dataChange`, staffRank)
+        axios.put(`${host}/propertiesChange`, staffRank)
         .then(res => {
             setPlayerData(res.data);
         })
