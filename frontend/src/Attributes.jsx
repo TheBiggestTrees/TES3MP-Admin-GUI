@@ -1,11 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { DataContext } from './DataContext';
+import axios from 'axios';
 
-const Attributes = () => {
+const Attributes = ({ host }) => {
 
   const [playerData, setPlayerData] = useContext(DataContext);
-  const [attributes, setAttributes] = useState(Object.values(playerData.attributes));
   const [hasData, setHasData] = useState(false);
+
+  const handleSettingsChange = () => {
+    axios.put(`${host}/attributesChange`, playerData.attributes)
+    .then(res => {
+        playerData.attributes = res.data.attributes
+        console.log(playerData.attributes)
+        setHasData(false);
+    })
+}
 
   return (
     <>
@@ -23,7 +32,7 @@ const Attributes = () => {
             <label htmlFor='strengthBase' className='font-bold pt-2 flex'>
               <span className="pr-2">Level:</span>
               <input id='strengthBase' type="number" className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Strength.base = e.target.value;
+                playerData.attributes.Strength.base = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Strength.base)}>
@@ -33,7 +42,7 @@ const Attributes = () => {
             <label htmlFor='strengthDamage' className='font-bold pt-2 flex'>
               <span className="pr-2 text-md font-normal">Reduction:</span>
               <input id='strengthDamage' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Strength.damage = e.target.value;
+                playerData.attributes.Strength.damage = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Strength.damage)}>
@@ -43,7 +52,7 @@ const Attributes = () => {
             <label htmlFor='strengthIncrease' className='font-bold pt-2 pb-4 flex'>
               <span className="pr-2 text-md font-normal">Progress: </span>
               <input id='strengthIncrease' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Strength.skillIncrease = e.target.value;
+                playerData.attributes.Strength.skillIncrease = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Strength.skillIncrease)}>
@@ -59,7 +68,7 @@ const Attributes = () => {
             <label htmlFor='agilityBase' className='font-bold pt-2 flex'>
               <span className="pr-2">Level:</span>
               <input id='agilityBase' type="number" className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Agility.base = e.target.value;
+                playerData.attributes.Agility.base = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Agility.base)}>
@@ -69,7 +78,7 @@ const Attributes = () => {
             <label htmlFor='agilityDamage' className='font-bold pt-2 flex'>
               <span className="pr-2 text-md font-normal">Reduction:</span>
               <input id='agilityDamage' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Agility.damage = e.target.value;
+                playerData.attributes.Agility.damage = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Agility.damage)}>
@@ -79,7 +88,7 @@ const Attributes = () => {
             <label htmlFor='agilityIncrease' className='font-bold pt-2 pb-4 flex'>
               <span className="pr-2 text-md font-normal">Progress: </span>
               <input id='agilityIncrease' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Agility.skillIncrease = e.target.value;
+                playerData.attributes.Agility.skillIncrease = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Agility.skillIncrease)}>
@@ -95,7 +104,7 @@ const Attributes = () => {
             <label htmlFor='luckBase' className='font-bold pt-2 flex'>
               <span className="pr-2">Level:</span>
               <input id='luckBase' type="number" className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Luck.base = e.target.value;
+                playerData.attributes.Luck.base = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Luck.base)}>
@@ -105,7 +114,7 @@ const Attributes = () => {
             <label htmlFor='luckDamage' className='font-bold pt-2 flex'>
               <span className="pr-2 text-md font-normal">Reduction:</span>
               <input id='luckDamage' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Luck.damage = e.target.value;
+                playerData.attributes.Luck.damage = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Luck.damage)}>
@@ -115,7 +124,7 @@ const Attributes = () => {
             <label htmlFor='luckIncrease' className='font-bold pt-2 pb-4 flex'>
               <span className="pr-2 text-md font-normal">Progress: </span>
               <input id='luckIncrease' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Luck.skillIncrease = e.target.value;
+                playerData.attributes.Luck.skillIncrease = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Luck.skillIncrease)}>
@@ -130,7 +139,7 @@ const Attributes = () => {
             <label htmlFor='speedBase' className='font-bold pt-2 flex'>
               <span className="pr-2">Level:</span>
               <input id='speedBase' type="number" className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Speed.base = e.target.value;
+                playerData.attributes.Speed.base = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Speed.base)}>
@@ -140,7 +149,7 @@ const Attributes = () => {
             <label htmlFor='speedDamage' className='font-bold pt-2 flex'>
               <span className="pr-2 text-md font-normal">Reduction:</span>
               <input id='speedDamage' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Speed.damage = e.target.value;
+                playerData.attributes.Speed.damage = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Speed.damage)}>
@@ -150,7 +159,7 @@ const Attributes = () => {
             <label htmlFor='speedIncrease' className='font-bold pt-2 pb-4 flex'>
               <span className="pr-2 text-md font-normal">Progress: </span>
               <input id='speedIncrease' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Speed.skillIncrease = e.target.value;
+                playerData.attributes.Speed.skillIncrease = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Speed.skillIncrease)}>
@@ -165,7 +174,7 @@ const Attributes = () => {
             <label htmlFor='PersonalityBase' className='font-bold pt-2 flex'>
               <span className="pr-2">Level:</span>
               <input id='PersonalityBase' type="number" className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Personality.base = e.target.value;
+                playerData.attributes.Personality.base = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Personality.base)}>
@@ -175,7 +184,7 @@ const Attributes = () => {
             <label htmlFor='PersonalityDamage' className='font-bold pt-2 flex'>
               <span className="pr-2 text-md font-normal">Reduction:</span>
               <input id='PersonalityDamage' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Personality.damage = e.target.value;
+                playerData.attributes.Personality.damage = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Personality.damage)}>
@@ -185,7 +194,7 @@ const Attributes = () => {
             <label htmlFor='PersonalityIncrease' className='font-bold pt-2 pb-4 flex'>
               <span className="pr-2 text-md font-normal">Progress: </span>
               <input id='PersonalityIncrease' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Personality.skillIncrease = e.target.value;
+                playerData.attributes.Personality.skillIncrease = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Personality.skillIncrease)}>
@@ -200,7 +209,7 @@ const Attributes = () => {
             <label htmlFor='EnduranceBase' className='font-bold pt-2 flex'>
               <span className="pr-2">Level:</span>
               <input id='EnduranceBase' type="number" className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Endurance.base = e.target.value;
+                playerData.attributes.Endurance.base = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Endurance.base)}>
@@ -210,7 +219,7 @@ const Attributes = () => {
             <label htmlFor='EnduranceDamage' className='font-bold pt-2 flex'>
               <span className="pr-2 text-md font-normal">Reduction:</span>
               <input id='EnduranceDamage' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Endurance.damage = e.target.value;
+                playerData.attributes.Endurance.damage = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Endurance.damage)}>
@@ -220,7 +229,7 @@ const Attributes = () => {
             <label htmlFor='EnduranceIncrease' className='font-bold pt-2 pb-4 flex'>
               <span className="pr-2 text-md font-normal">Progress: </span>
               <input id='EnduranceIncrease' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Endurance.skillIncrease = e.target.value;
+                playerData.attributes.Endurance.skillIncrease = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Endurance.skillIncrease)}>
@@ -235,7 +244,7 @@ const Attributes = () => {
             <label htmlFor='IntelligenceBase' className='font-bold pt-2 flex'>
               <span className="pr-2">Level:</span>
               <input id='IntelligenceBase' type="number" className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Intelligence.base = e.target.value;
+                playerData.attributes.Intelligence.base = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Intelligence.base)}>
@@ -245,7 +254,7 @@ const Attributes = () => {
             <label htmlFor='IntelligenceDamage' className='font-bold pt-2 flex'>
               <span className="pr-2 text-md font-normal">Reduction:</span>
               <input id='IntelligenceDamage' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Intelligence.damage = e.target.value;
+                playerData.attributes.Intelligence.damage = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Intelligence.damage)}>
@@ -255,7 +264,7 @@ const Attributes = () => {
             <label htmlFor='IntelligenceIncrease' className='font-bold pt-2 pb-4 flex'>
               <span className="pr-2 text-md font-normal">Progress: </span>
               <input id='IntelligenceIncrease' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Intelligence.skillIncrease = e.target.value;
+                playerData.attributes.Intelligence.skillIncrease = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Intelligence.skillIncrease)}>
@@ -270,7 +279,7 @@ const Attributes = () => {
             <label htmlFor='WillpowerBase' className='font-bold pt-2 flex'>
               <span className="pr-2">Level:</span>
               <input id='WillpowerBase' type="number" className='bg-transparent  text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Willpower.base = e.target.value;
+                playerData.attributes.Willpower.base = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Willpower.base)}>
@@ -280,7 +289,7 @@ const Attributes = () => {
             <label htmlFor='WillpowerDamage' className='font-bold pt-2 flex'>
               <span className="pr-2 text-md font-normal">Reduction:</span>
               <input id='WillpowerDamage' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Willpower.damage = e.target.value;
+                playerData.attributes.Willpower.damage = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Willpower.damage)}>
@@ -290,7 +299,7 @@ const Attributes = () => {
             <label htmlFor='WillpowerIncrease' className='font-bold pt-2 pb-4 flex'>
               <span className="pr-2 text-md font-normal">Progress: </span>
               <input id='WillpowerIncrease' type="number" className='bg-transparent font-normal text-[#8b9cd3] placeholder:text-[#ecce24da] px-1 border-[#ecce24da] border-b-2' onChange={e => {
-                playerData.attributes.Willpower.skillIncrease = e.target.value;
+                playerData.attributes.Willpower.skillIncrease = +e.target.value;
                 setHasData(true);
               }}
                 placeholder={Math.floor(playerData.attributes.Willpower.skillIncrease)}>

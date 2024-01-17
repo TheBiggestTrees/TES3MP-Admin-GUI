@@ -74,13 +74,13 @@ export default function PlayerSelect({ host }) {
             </div>
 
             <div className="flex gap-4">
-              <Stats />
+              <Stats host={ host } />
               <Fame host={ host } />
             </div>
             
             <div className="flex gap-4">
-              <Skills />
-              <Attributes />
+              <Skills host={ host } />
+              <Attributes host={ host } />
             </div>
 
           </DataContext.Provider>
