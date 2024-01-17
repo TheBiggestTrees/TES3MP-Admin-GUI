@@ -103,7 +103,7 @@ const Fame = ({ host }) => {
               
               </label>
             </div>
-            {dataReady && <button className='border-2 px-2 mt-2 border-[#ecce24da]' type='submit' onClick={() => handleSettingsChange()}>Change</button>}
+            {dataReady && <button className='border-2 px-2 mt-2 border-[#ecce24da]' type='submit' onClick={() => handleSettingsChange()}>Save Changes</button>}
           </form>
 
         </div>
