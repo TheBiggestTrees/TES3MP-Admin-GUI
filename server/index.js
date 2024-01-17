@@ -36,7 +36,7 @@ const changeProperties = (reqData) => {
     const path = '../../server/data/player/' + selectedPlayer + '.json';
     const data = JSON.parse(fs.readFileSync(path));
    
-    data.settings.staffRank = parseInt(reqData.settings.staffRank);
+    data.settings = reqData;
 
     fs.writeFileSync(path, JSON.stringify(data, null, 4));
 }
