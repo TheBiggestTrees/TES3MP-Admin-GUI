@@ -5,7 +5,6 @@ import axios from 'axios';
 const Factions = ({ host }) => {
 
     const [playerData, setPlayerData] = useContext(DataContext);
-    const [factions, setFactions] = useState();
  
     const handleJoin = (guild) => {
 
