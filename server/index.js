@@ -50,6 +50,15 @@ const changeAttributes = (reqData) => {
     fs.writeFileSync(path, JSON.stringify(data, null, 4));
 }
 
+const changeSkills = (reqData) => {
+    const path = '../../server/data/player/' + selectedPlayer + '.json';
+    const data = JSON.parse(fs.readFileSync(path));
+   
+    data.skills = reqData;
+
+    fs.writeFileSync(path, JSON.stringify(data, null, 4));
+}
+
 
 app.use(cors());
 app.use(express.json());
@@ -91,5 +100,12 @@ app.put('/attributesChange', (req, res) => {
     changeAttributes(reqData);
     res.send(JSON.parse(fs.readFileSync('../../server/data/player/' + selectedPlayer + '.json')));
 })
+
+app.put('/skillsChange', (req, res) => {
+    const reqData = req.body;
+    changeSkills(reqData);
+    res.send(JSON.parse(fs.readFileSync('../../server/data/player/' + selectedPlayer + '.json')));
+})
+
 
 
