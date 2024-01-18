@@ -6,6 +6,7 @@ import Attributes from './Attributes.jsx';
 import { DataContext } from './DataContext.jsx';
 import Skills from './Skills.jsx';
 import Properties from './Properties.jsx';
+import Factions from './Factions.jsx';
 
 
 export default function PlayerSelect({ host }) {
@@ -76,6 +77,10 @@ export default function PlayerSelect({ host }) {
             <div className="flex gap-4">
               <Stats host={ host } />
               <Fame host={ host } />
+            </div>
+
+            <div className='flex gap-4'>
+              <Factions host={ host } />
             </div>
             
             <div className="flex gap-4">
