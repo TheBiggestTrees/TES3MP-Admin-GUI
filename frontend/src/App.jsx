@@ -18,8 +18,8 @@ function App() {
 
   return (
     <>
-      <div className='flex flex-col gap-8 items-center'>
-        {iP && <button className='border-2 bg-[#00000038] border-[#ecce24b4] w-36 h-12 fixed self-start mx-2 my-8' onClick={showSettings}>Change Server</button>}
+      <div className='flex flex-col items-center'>
+      {iP && <button className='border-2 bg-[#00000038] border-[#ecce24b4] w-32 h-12 mx-2 mt-4' onClick={showSettings}>Change Server</button>}
         {!iP && <Login setIpAddress={setIpAddress} host={iP} />}
         {iP && <PlayerSelect host={iP}/>}
       </div>

@@ -30,7 +30,7 @@ const Properties = ({ host }) => {
     <div className='flex flex-col w-full'>
         <div className='font-bold text-xl border-[#ecce24b4] border-b-2 mb-4'>Player Properties</div>
 
-        <div onSubmit={e => {e.preventDefault()}} className="flex justify-start gap-4">
+        <div onSubmit={e => {e.preventDefault()}} className="flex flex-col md:flex-row justify-start md:gap-4">
 
             <div className='flex flex-col w-full'>
 
