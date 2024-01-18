@@ -14,13 +14,6 @@ const selectPlayer = (player) => {
     return selection
 }
 
-const changeName = (reqData) => {
-    const path = '../../server/data/player/' + selectedPlayer + '.json';
-    const data = JSON.parse(fs.readFileSync(path));
-    data.login.name = reqData.login.name;
-    fs.writeFileSync(path, JSON.stringify(data, null, 4));
-}
-
 const changeFame = (req) => {
     const path = '../../server/data/player/' + selectedPlayer + '.json';
     const data = JSON.parse(fs.readFileSync(path));
@@ -67,6 +60,16 @@ const changeFactions = (reqData) => {
     data.factionExpulsion = reqData.factionExpulsion;
 
     fs.writeFileSync(path, JSON.stringify(data, null, 4));
+}
+
+const changeStats = (reqData) => {
+    const path = '../../server/data/player/' + selectedPlayer + '.json';
+    const data = JSON.parse(fs.readFileSync(path));
+   
+    data.stats = reqData;
+
+    fs.writeFileSync(path, JSON.stringify(data, null, 4));
+
 }
 
 app.use(cors());
@@ -119,6 +122,12 @@ app.put('/skillsChange', (req, res) => {
 app.put('/factions', (req, res) => {
     const reqData = req.body;
     changeFactions(reqData);
+    res.send(JSON.parse(fs.readFileSync('../../server/data/player/' + selectedPlayer + '.json')));
+})
+
+app.put('/statsChange', (req, res) => {
+    const reqData = req.body;
+    changeStats(reqData);
     res.send(JSON.parse(fs.readFileSync('../../server/data/player/' + selectedPlayer + '.json')));
 })
 
