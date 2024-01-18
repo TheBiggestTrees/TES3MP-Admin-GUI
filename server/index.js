@@ -59,6 +59,15 @@ const changeSkills = (reqData) => {
     fs.writeFileSync(path, JSON.stringify(data, null, 4));
 }
 
+const changeFactions = (reqData) => {
+    const path = '../../server/data/player/' + selectedPlayer + '.json';
+    const data = JSON.parse(fs.readFileSync(path));
+   
+    data.clientVariables = reqData.clientVariables;
+    data.factionExpulsion = reqData.factionExpulsion;
+
+    fs.writeFileSync(path, JSON.stringify(data, null, 4));
+}
 
 app.use(cors());
 app.use(express.json());
@@ -104,6 +113,12 @@ app.put('/attributesChange', (req, res) => {
 app.put('/skillsChange', (req, res) => {
     const reqData = req.body;
     changeSkills(reqData);
+    res.send(JSON.parse(fs.readFileSync('../../server/data/player/' + selectedPlayer + '.json')));
+})
+
+app.put('/factions', (req, res) => {
+    const reqData = req.body;
+    changeFactions(reqData);
     res.send(JSON.parse(fs.readFileSync('../../server/data/player/' + selectedPlayer + '.json')));
 })
 

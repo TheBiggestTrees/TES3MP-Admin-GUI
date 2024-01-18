@@ -73,13 +73,13 @@ export default function PlayerSelect({ host }) {
               <Properties host={ host } />
             </div>
 
+            <div className='flex flex-col md:flex-row gap-4'>
+              <Factions host={ host } />
+            </div>
+
             <div className="flex flex-col md:flex-row gap-4">
               <Stats host={ host } />
               <Fame host={ host } />
-            </div>
-
-            <div className='flex flex-col md:flex-row gap-4'>
-              <Factions host={ host } />
             </div>
             
             <div className="flex flex-col md:flex-row gap-4">
