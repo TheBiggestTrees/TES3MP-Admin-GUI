@@ -1,0 +1,38 @@
+{
+  "name": "tes3mp-admin-gui",
+  "version": "1.0.0",
+  "description": "A program that allows server owners to modify player data while that player is offline.",
+  "main": "main.js",
+  "icon": "icon.ico",
+  "win": {
+    "icon": "icon.ico",
+    "target": "nsis"
+  },
+  "nsis": {
+    "allowElevation": false,
+    "allowToChangeInstallationDirectory": true,
+    "oneClick": false,
+    "perMachine": true
+  },
+  "scripts": {
+    "packageBuild": "electron-packager . tes3mp-admin-gui --overwrite --asar=true --platform=win32 --arch=ia32 --icon=icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"TES3MP Admin GUI\"",
+    "start": "electron-forge start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "author": "TheBiggestTrees",
+  "license": "ISC",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.2.0",
+    "@electron-forge/maker-deb": "^7.2.0",
+    "@electron-forge/maker-rpm": "^7.2.0",
+    "@electron-forge/maker-squirrel": "^7.2.0",
+    "@electron-forge/maker-zip": "^7.2.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.2.0",
+    "electron": "^28.1.4"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  }
+}
