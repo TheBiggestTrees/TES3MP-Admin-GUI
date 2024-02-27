@@ -50,6 +50,6 @@ const port = 3000;
 ### Client
 1. Download the latest execuatable from the Releases page.
 2. Run the installer
-3. Choose wherever you want to install the program.
+3. Choose where you want to install the program.
 4. Run TES3MP Admin GUI
 5. Connect to your server running on the terminal using the IP and Port.
