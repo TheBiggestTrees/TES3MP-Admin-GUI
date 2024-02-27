@@ -1,6 +1,6 @@
 {
   "name": "tes3mp-admin-gui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A program that allows server owners to modify player data while that player is offline.",
   "main": "main.js",
   "icon": "icon.ico",
