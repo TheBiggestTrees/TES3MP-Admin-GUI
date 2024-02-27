@@ -1,9 +1,9 @@
+const port = 3000;
 const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 const app = express();
 
-const port = 3000;
 
 let selectedPlayer = 'Tree';
 const players = [...fs.readdirSync('../../server/data/player/')]
@@ -72,6 +72,7 @@ const changeStats = (reqData) => {
 
 }
 
+
 app.use(cors());
 app.use(express.json());
 
@@ -130,6 +131,4 @@ app.put('/statsChange', (req, res) => {
     changeStats(reqData);
     res.send(JSON.parse(fs.readFileSync('../../server/data/player/' + selectedPlayer + '.json')));
 })
-
-
 

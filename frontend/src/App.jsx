@@ -9,7 +9,8 @@ function App() {
   const [iP, setIP] = useState('');
 
   function setIpAddress(ip) {
-    setIP(`http://${ip}:3000`);
+    console.log(ip)
+    setIP(`http://${ip}`);
   } 
 
   function showSettings() {
