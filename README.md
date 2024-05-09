@@ -42,9 +42,9 @@ node index.js
 ### Change Server Port
 - Default Port is ```3000```
 
-If you want to change the port the server runs on you will have to manually change it in the index.js file within ```\TES3MP-Admin-GUI\server\``` on line 1. 
+If you want to change the port the server runs on you will have to manually change it in the index.js file within ```\TES3MP-Admin-GUI\server\``` on line 1, or set an environment variable. 
 ```js
-const port = 3000;
+const port = process.env.PORT || 3000;
 ```
 
 ### Client
